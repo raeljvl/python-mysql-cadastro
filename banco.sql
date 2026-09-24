@@ -1,15 +1,15 @@
 
 
 USE cadastro;
-SELECT * FROM pessoas;
+SELECT * FROM usuario;
 
-create table pessoas (
+create table usuario (
 nome varchar(30),
 idade tinyint,
 sexo char(1),
 peso float,
 altura float,
-nacionalidade varchar(20)
+cpf varchar(11)
 );
 
 create table salario (
@@ -20,5 +20,5 @@ data_pagamento date,
 setor varchar(30)
 );
 
-INSERT INTO pessoas (nome, idade, sexo, peso, altura, nacionalidade)
-VALUES ('Israel de Albuquerque', 20, 'M', 80.0, 1.75, 'Brasil');
+INSERT INTO usuario (nome, idade, sexo, peso, altura, cpf)
+VALUES ('Israel de Albuquerque', 20, 'M', 80.0, 1.75, '12345678901');
