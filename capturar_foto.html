@@ -1,0 +1,22 @@
+<video id="video" autoplay playsinline></video>
+<button onclick="capturar()">📸 Tirar foto</button>
+<canvas id="canvas" style="display:none;"></canvas>
+
+<script>
+function capturar() {
+    var video = document.getElementById("video");
+    var canvas = document.getElementById("canvas");
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext("2d").drawImage(video, 0, 0);
+
+    // Envia pra API
+    fetch("http://SEU_IP:5000/salvar", {
+        method: "POST",
+        body: canvas.toDataURL("image/png")
+    })
+    .then(r => r.text())
+    .then(msg => alert(msg));
+}
+</script>   
