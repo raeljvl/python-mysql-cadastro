@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câmera</title>
+</head>
+<body>
+    <video id="video" autoplay playsinline></video>
+    <button onclick="parar()">Fechar</button>
+
+    <script>
+        var video = document.getElementById("video");
+        var stream;
+
+        function abrirCamera() {
+            navigator.mediaDevices.getUserMedia({
+                video: { facingMode: "environment" }
+            })
+            .then(function(s) {
+                stream = s;
+                video.srcObject = stream;
+            })
+            .catch(function(erro) {
+                alert("Erro: " + erro.message);
+            });
+        }
+
+        function parar() {
+            if (stream) {
+                stream.getTracks().forEach(function(t) { t.stop(); });
+                stream = null;
+            }
+        }
+
+        abrirCamera();
+    </script>
+</body>
+</html>   
